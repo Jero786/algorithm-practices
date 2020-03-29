@@ -70,20 +70,20 @@ function buildTrieNode({word, node, index = 0}) {
     const nextNodeTextTarget = word.substring(0, index + 1);
     const existingChildNode = findNode(node, nextNodeTextTarget);
     if (existingChildNode) {
-      buildTrieNode({word, node: existingChildNode, index});
+      return buildTrieNode({word, node: existingChildNode, index});
     } else {
       const newChildNode = createNode({
         isEnd: word.length === nextNodeTextTarget.length,
         text: nextNodeTextTarget
       });
       node.nodes.push(newChildNode);
-      buildTrieNode({word, node: newChildNode, index});
+      return buildTrieNode({word, node: newChildNode, index});
     }
   }
   
   const newChildNode = createNode({isEnd: word.length === textTarget.length, text: textTarget});
   node.nodes.push(newChildNode);
-  buildTrieNode({word, node: newChildNode, index});
+  return buildTrieNode({word, node: newChildNode, index});
 }
 
 function findNode(node, textTarget) {
@@ -103,7 +103,7 @@ function getAllChildNodes(node, results) {
     results.push(node.text);
   }
   for (const childNode of node.nodes) {
-    getAllChildNodes(childNode, results);
+    result = getAllChildNodes(childNode, results);
   }
   return results;
 }
