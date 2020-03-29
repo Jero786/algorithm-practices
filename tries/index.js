@@ -15,7 +15,7 @@
  *                  A*
  */
 function buildTrie(dictionary) {
-  let parentNode = {nodes: [], isEnd: false, word: undefined};
+  const parentNode = {nodes: [], isEnd: false, word: undefined};
   for (const word of dictionary) {
     buildTrieNode({word, node: parentNode});
   }
