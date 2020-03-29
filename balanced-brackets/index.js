@@ -1,3 +1,8 @@
+/**
+ * Validate if given brackets are properly balanced.
+ * @param brackets
+ * @returns {string|string}
+ */
 function isBalanced(brackets) {
   return isBalancedAllBrackets(brackets.split(''));
 }
