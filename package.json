@@ -11,11 +11,7 @@
   "author": "JC",
   "license": "ISC",
   "dependencies": {
-    "jest": "^25.2.3"
+    "jest": "^25.2.4"
   },
-  "devDependencies": {
-    "@types/jest": "^25.1.4",
-    "ts-jest": "^25.2.1",
-    "typescript": "^3.8.3"
-  }
+  "devDependencies": {}
 }
