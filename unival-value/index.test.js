@@ -12,3 +12,16 @@ test('Unival tree', () => {
   
   expect(expected).toBeTruthy();
 });
+
+test('Non-Unival tree', () => {
+  const UNIC_VALUE = '1';
+  const nodeOne = createUnivalNode({value: '123'});
+  const nodeTwoChildOne = createUnivalNode({value: UNIC_VALUE});
+  const nodeTwoChildTwo = createUnivalNode({value: UNIC_VALUE});
+  const nodeTwo = createUnivalNode({value: UNIC_VALUE, nodes: [nodeTwoChildOne, nodeTwoChildTwo]});
+  const mainNode = createUnivalNode({value: UNIC_VALUE, nodes: [nodeOne, nodeTwo]});
+  
+  const expected = isUnivalTree(mainNode, UNIC_VALUE);
+  
+  expect(expected).toBeFalsy();
+});
