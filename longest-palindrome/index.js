@@ -8,6 +8,11 @@ function isPalindrome(text = '') {
   return text === invertedText;
 }
 
+/**
+ * Given text return the longest palindrome.
+ * @param text
+ * @returns {string}
+ */
 function getLongestPalindrome(text = '') {
  let longestPalindrome = '';
   for (let i = 0; i < (text.length - 1); i++) {
