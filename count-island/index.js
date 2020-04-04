@@ -8,20 +8,49 @@ A cell can only be adjacent to each other horizontally and vertically.
 */
 
 /**
+ * Return the amount of islands visited, solved in a recursive way.
+ * @param islandMatrix
+ * @returns {number}
+ */
+const numIslandsInRecursiveWay  = (islandMatrix) => {
+  
+  if (!islandMatrix || islandMatrix.length === 0) {
+    return 0;
+  }
+  let numIslands = 0;
+  for(let y = 0; y < islandMatrix.length; y++) {
+    for(let  x = 0; x < islandMatrix.length; x++) {
+      if (islandMatrix[y][x]) {
+        numIslands += getNumIslandsDeepFirstWay({islandMatrix, x, y});
+      }
+    }
+  }
+};
+
+function getNumIslandsDeepFirstWay({islandMatrix, x, y}) {
+
+}
+
+/**
  * Return the amount of islands visited, solved in a non-recursive way.
  * @param islandMatrix
  * @returns {number}
  */
-const countIsland = (islandMatrix) => {
+const numIslands = (islandMatrix) => {
+  
+  if (!islandMatrix || islandMatrix.length === 0) {
+    return 0;
+  }
+  
   const islandWithFlags = mapIslandToFlags(islandMatrix);
   const length = islandWithFlags.length;
-  let count = 0;
+  let numIslands = 0;
   
   const onIslandFound = (currentIsland, islandAdjacent) => {
     if (!islandAdjacent.isVisited) {
       islandAdjacent.isVisited = true;
       currentIsland.isVisited = true;
-      count++;
+      numIslands++;
     }
   };
   
@@ -29,57 +58,57 @@ const countIsland = (islandMatrix) => {
   for (let y = 0; y < length; y++) {
     for (let x = 0; x < length; x++) {
       if (islandWithFlags[y][x]) {
-        askIfExistIslandTop(islandWithFlags, x, y, onIslandFound);
-        askIfExistIslandLeft(islandWithFlags, x, y, onIslandFound);
-        askIfExistIslandBottom(islandWithFlags, x, y, onIslandFound);
-        askIfExistIslandRight(islandWithFlags, x, y, onIslandFound);
+        askIfExistIslandTop({islandWithFlags, x, y, onIslandFound});
+        askIfExistIslandLeft({islandWithFlags, x, y, onIslandFound});
+        askIfExistIslandBottom({islandWithFlags, x, y, onIslandFound});
+        askIfExistIslandRight({islandWithFlags, x, y, onIslandFound});
       }
     }
   }
   
-  return count;
+  return numIslands;
 };
 
-function askIfExistIslandTop(matrix, x, y, callback) {
-  const rowY = matrix[y - 1];
+function askIfExistIslandTop({islandWithFlags, x, y, onIslandFound}) {
+  const rowY = islandWithFlags[y - 1];
   if (rowY) {
     const islandAdjacent = rowY[x];
     if (islandAdjacent) {
-      const currentIsland = matrix[y][x];
-      callback(currentIsland, islandAdjacent);
+      const currentIsland = islandWithFlags[y][x];
+      onIslandFound(currentIsland, islandAdjacent);
     }
   }
 }
 
-function askIfExistIslandBottom(matrix, x, y, callback) {
-  const rowY = matrix[y + 1];
+function askIfExistIslandBottom({islandWithFlags, x, y, onIslandFound}) {
+  const rowY = islandWithFlags[y + 1];
   if (rowY) {
     const islandAdjacent = rowY[x];
     if (islandAdjacent) {
-      const currentIsland = matrix[y][x];
-      callback(currentIsland, islandAdjacent);
+      const currentIsland = islandWithFlags[y][x];
+      onIslandFound(currentIsland, islandAdjacent);
     }
   }
 }
 
-function askIfExistIslandLeft(matrix, x, y, callback) {
-  const rowY = matrix[y];
+function askIfExistIslandLeft({islandWithFlags, x, y, onIslandFound}) {
+  const rowY = islandWithFlags[y];
   if (rowY) {
     const islandAdjacent = rowY[x - 1];
     if (islandAdjacent) {
-      const currentIsland = matrix[y][x];
-      callback(currentIsland, islandAdjacent);
+      const currentIsland = islandWithFlags[y][x];
+      onIslandFound(currentIsland, islandAdjacent);
     }
   }
 }
 
-function askIfExistIslandRight(matrix, x, y, callback) {
-  const rowY = matrix[y];
+function askIfExistIslandRight({islandWithFlags, x, y, onIslandFound}) {
+  const rowY = islandWithFlags[y];
   if (rowY) {
     const islandAdjacent = rowY[x + 1];
     if (islandAdjacent) {
-      const currentIsland = matrix[y][x];
-      callback(currentIsland, islandAdjacent);
+      const currentIsland = islandWithFlags[y][x];
+      onIslandFound(currentIsland, islandAdjacent);
     }
   }
 }
@@ -105,5 +134,6 @@ function mapIslandToFlags(matrix) {
 }
 
 module.exports = {
-  countIsland,
+  numIslands,
+  numIslandsInRecursiveWay,
 };
