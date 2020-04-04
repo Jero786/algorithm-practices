@@ -4,6 +4,7 @@
 1. [Unival tree](/unival-tree/index.test.js)
 1. [Balanced brackets](/balanced-brackets/index.test.js)
 1. [Longest palindrome](/longest-palindrome/index.test.js)
+1. [count-island](/count-island/index.test.js)
 
 ## Setup
 ```
