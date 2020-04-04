@@ -25,10 +25,22 @@ const numIslandsInRecursiveWay  = (islandMatrix) => {
       }
     }
   }
+  return numIslands;
 };
 
 function getNumIslandsDeepFirstWay({islandMatrix, x, y}) {
-
+  if (x < 0 || x >= islandMatrix.length || y < 0 || y >= islandMatrix.length || islandMatrix[y][x] === 0) {
+    return 0;
+  }
+  
+  islandMatrix[y][x] = 0; // in order to avoid to check twice this island
+  
+  getNumIslandsDeepFirstWay({islandMatrix, x: x - 1, y}); // adjacent left
+  getNumIslandsDeepFirstWay({islandMatrix, x: x + 1, y}); // adjacent right
+  getNumIslandsDeepFirstWay({islandMatrix, x, y: y - 1}); // adjacent top
+  getNumIslandsDeepFirstWay({islandMatrix, x, y: y + 1}); // adjacent bottom
+  
+  return 1;
 }
 
 /**
