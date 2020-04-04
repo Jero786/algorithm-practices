@@ -76,7 +76,7 @@ function askIfExistIslandRight(matrix, x, y, callback) {
 }
 
 /**
- * Convert Islands to Object.
+ * Given a matrix with number of islands, return a matrix with islands objects.
  * @param matrix
  * @returns {[[]]}
  */
