@@ -16,13 +16,14 @@ const countIsland = (islandMatrix) => {
     }
   };
   
+  // O(n2) quadratic time
   for (let y = 0; y < length; y++) {
     for (let x = 0; x < length; x++) {
       if (newMatrix[y][x]) {
-        existIslandTop(newMatrix, x, y, onIslandFound);
-        existIslandLeft(newMatrix, x, y, onIslandFound);
-        existIslandBottom(newMatrix, x, y, onIslandFound);
-        existIslandRight(newMatrix, x, y, onIslandFound);
+        askIfExistIslandTop(newMatrix, x, y, onIslandFound);
+        askIfExistIslandLeft(newMatrix, x, y, onIslandFound);
+        askIfExistIslandBottom(newMatrix, x, y, onIslandFound);
+        askIfExistIslandRight(newMatrix, x, y, onIslandFound);
       }
     }
   }
@@ -30,7 +31,7 @@ const countIsland = (islandMatrix) => {
   return count;
 };
 
-function existIslandTop(matrix, x, y, callback) {
+function askIfExistIslandTop(matrix, x, y, callback) {
   const rowY = matrix[y - 1];
   if (rowY) {
     const island = rowY[x];
@@ -41,7 +42,7 @@ function existIslandTop(matrix, x, y, callback) {
   }
 }
 
-function existIslandBottom(matrix, x, y, callback) {
+function askIfExistIslandBottom(matrix, x, y, callback) {
   const rowY = matrix[y + 1];
   if (rowY) {
     const island = rowY[x];
@@ -52,7 +53,7 @@ function existIslandBottom(matrix, x, y, callback) {
   }
 }
 
-function existIslandLeft(matrix, x, y, callback) {
+function askIfExistIslandLeft(matrix, x, y, callback) {
   const rowY = matrix[y];
   if (rowY) {
     const island = rowY[x - 1];
@@ -63,7 +64,7 @@ function existIslandLeft(matrix, x, y, callback) {
   }
 }
 
-function existIslandRight(matrix, x, y, callback) {
+function askIfExistIslandRight(matrix, x, y, callback) {
   const rowY = matrix[y];
   if (rowY) {
     const island = rowY[x + 1];
@@ -74,6 +75,11 @@ function existIslandRight(matrix, x, y, callback) {
   }
 }
 
+/**
+ * Convert Islands to Object.
+ * @param matrix
+ * @returns {[[]]}
+ */
 function mapIslandsToObjects(matrix) {
   let newMatrix = [[]];
   for (let y = 0; y < matrix.length; y++) {
