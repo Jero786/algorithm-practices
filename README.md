@@ -5,6 +5,7 @@
 1. [Balanced brackets](/balanced-brackets/index.test.js)
 1. [Longest palindrome](/longest-palindrome/index.test.js)
 1. [Count island](/count-island/index.test.js)
+1. [Bus music](/bus-music/index.test.js)
 
 ## Setup
 ```
