@@ -6,6 +6,7 @@
 1. [Longest palindrome](/longest-palindrome/index.test.js)
 1. [Count island](/count-island/index.test.js)
 1. [Bus music](/bus-music/index.test.js)
+1. [Flight travels](/flight-travels/index.test.js)
 
 ## Setup
 ```
