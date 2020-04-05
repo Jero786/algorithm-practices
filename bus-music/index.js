@@ -1,4 +1,12 @@
 /**
+ * Problem:
+ *
+ * Given the bus travel duration and the song durations,
+ * returns the best pair of songs that can be reproduced,
+ * leaving 30 seconds in silence.
+ */
+
+/**
  * Given a list of tracks (each track is a number and represent their duration by minutes),
  * and total time duration of the bus tour, should retrieve the longest two track that
  * could be played during the tour, and you will need to calculate to have left 30 secs before finish the tour.
