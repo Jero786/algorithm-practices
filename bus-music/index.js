@@ -10,12 +10,11 @@
  * @returns {*[]}
  */
 function getBusMusic(tracks, durationByMin) {
-  
   const sortedTracks = tracks.sort((a,b) => a-b); // O(n log n)
-  let lowIndex = 0;
-  let highIndex = sortedTracks.length - 1;
   const extraTimeByMin = .5;
   
+  let lowIndex = 0;
+  let highIndex = sortedTracks.length - 1;
   let lastLowIndex = lowIndex;
   let lastHighIndex = highIndex;
   let lastDiff = sortedTracks[highIndex] - sortedTracks[lowIndex];
@@ -23,6 +22,7 @@ function getBusMusic(tracks, durationByMin) {
   // Time complexity: O(n log n)
   // Memory space: O(1)
   while(lowIndex < highIndex) {
+    
     const sumTracksByMin = (sortedTracks[lowIndex] + sortedTracks[highIndex]);
     const totalTargetByMin = sumTracksByMin + extraTimeByMin;
     const currentDiff = durationByMin - totalTargetByMin;
