@@ -10,6 +10,7 @@
  * return the states that the cells would have after those seconds.
  */
 function calculateCellActivityBySec({cells, seconds}) {
+  // 0(n 2)
   for (let i = 0; i < seconds; i++) {
     for (let j = 0; j < cells.length; j++) {
       cells = processCell(j, cells);
