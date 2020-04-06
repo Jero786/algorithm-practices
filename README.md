@@ -8,6 +8,7 @@
 1. [Bus music](/bus-music/index.test.js)
 1. [Flight travels](/flight-travels/index.test.js)
 1. [Cell activity](/cell-activity/index.test.js)
+1. [Delivery truck](/delivery-truck/index.test.js)
 
 ## Setup
 ```
