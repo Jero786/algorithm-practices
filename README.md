@@ -9,6 +9,7 @@
 1. [Flight travels](/flight-travels/index.test.js)
 1. [Cell activity](/cell-activity/index.test.js)
 1. [Delivery truck](/delivery-truck/index.test.js)
+1. [Graph bars](/graph-bars/index.test.js)
 
 ## Setup
 ```
