@@ -11,6 +11,7 @@
 1. [Delivery truck](/delivery-truck/index.test.js)
 1. [Graph bars](/graph-bars/index.test.js)
 1. [Tree diffing](/react-dom-simulation/ReactDOM.test.js)
+1. [Word search](/word-search/index.test.js)
 
 ## Setup
 ```
