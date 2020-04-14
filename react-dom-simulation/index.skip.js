@@ -2,30 +2,6 @@ const React = require('react');
 
 const {buildNodes, reactElementToFiberNode, isEverySiblingEqual} = require('./fiber');
 
-/*
- 1. Build a react component APP (just remember syntax here)
- 2. render:
-    2. First-time:
-            - Phase: 1
-              - Create a Fiber Node tree from scratch from given React Element (APP). (normal tree, to fiber tree), crate each DOM instance needed (stateNode).
-                Remember to create a working progress, Parent.stateNode === undefined, which contain a `child` pointer to the App fiber node.
-            - Phase: 2 Commit
-              - Container.appendChild(fiberNode.getAllStateNodes(WorkingProgressNode.child))
-   3. Update-time:
-          - Phase: 1 Render-Reconcile
-            - Get from Store containers, the previous Fiber node Tree. ('#root', FiberNodeTree)
-            - Create a New Fiber Tree from existing Elements (The working progress tree) in the following way:
-               - Set flag state: STARGING_WORKING_IN_PROGRESS
-               - Compare each existing Fiber node (should container a old element too), with New one.
-                  A: The elements nodes are the same, just point the same reference Old fiberNode, to the new WPT.
-                  B: The elements nodes are different, create a New FiverNode, and enqueue the changes in that node, and mark as effect.
-               - Set flag state: ENDED_WORKING_IN_PROGRESS
-          - Phase: 2 Commit
-            - Take all effects (which contain each Fiber node with the address in the real DOM) and apply these effect to real DOM in the detached WPT.
-            - Point the WPT to as new Child of Parent node. (here it's happening the double buffer)
- 3 setState
-     - That happens the same as Update-time phase that statement above.
-*/
 test('should convert React elements to Fiber node', () => {
   // Arrange
   const reactElement = buildTreeOne();

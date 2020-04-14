@@ -59,3 +59,5 @@ test('should initialize a fiber node properly', () => {
   expect(fiberNode.child).toBeDefined();
   expect(fiberNode.stateNode.innerHTML).toBe('<li classname=\"list__item\"></li><li classname=\"list__item\"></li>');
 });
+
+//TO Be continue...
