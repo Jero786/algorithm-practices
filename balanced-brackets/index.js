@@ -3,11 +3,7 @@
  * @param brackets
  * @returns {string|string}
  */
-function isBalanced(brackets) {
-  return isBalancedAllBrackets(brackets.split(''));
-}
-
-function isBalancedAllBrackets(brackets, index = 0, bracketStack = []) {
+function isBalanced(brackets, index = 0, bracketStack = []) {
   if (index <= brackets.length) {
     const bracket = brackets[index];
     if (isBracketOpen(bracket)) {
@@ -19,7 +15,7 @@ function isBalancedAllBrackets(brackets, index = 0, bracketStack = []) {
       }
     }
     index++;
-    return isBalancedAllBrackets(brackets, index, bracketStack)
+    return isBalanced(brackets, index, bracketStack)
   }
   
   return "YES";
