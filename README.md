@@ -16,6 +16,8 @@
 1. [Longest common prefix](/longest-common-prefix/index.test.js)
 1. [Single number](/single-number/index.test.js)
 1. [Get unique number](/single-number/index.test.js)
+1. [Power of two](/power-of-two/index.test.js)
+1. [Robot return origin](/robot-return-origin/index.test.js)
 
 ## Setup
 ```
