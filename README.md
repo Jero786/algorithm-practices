@@ -14,6 +14,8 @@
 1. [Word search](/word-search/index.test.js)
 1. [First unique character](/first-unique-character/index.test.js)
 1. [Longest common prefix](/longest-common-prefix/index.test.js)
+1. [Single number](/single-number/index.test.js)
+1. [Get unique number](/single-number/index.test.js)
 
 ## Setup
 ```

@@ -1,5 +1,3 @@
-
-
 function getLongestCommonPrefix(dictionary) {
   if (!dictionary) {
     throw new Error('Given dictionary is undefined');
