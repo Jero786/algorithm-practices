@@ -18,6 +18,7 @@
 1. [Get unique number](/single-number/index.test.js)
 1. [Power of two](/power-of-two/index.test.js)
 1. [Robot return origin](/robot-return-origin/index.test.js)
+1. [Sum total tree numbers](/tree-sum-numbers/index.test.js)
 
 ## Setup
 ```
