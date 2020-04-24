@@ -19,6 +19,7 @@
 1. [Power of two](/power-of-two/index.test.js)
 1. [Robot return origin](/robot-return-origin/index.test.js)
 1. [Sum total tree numbers](/tree-sum-numbers/index.test.js)
+1. [Flatten array](/flatten-array/index.test.js)
 
 ## Setup
 ```
