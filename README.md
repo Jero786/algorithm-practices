@@ -21,6 +21,7 @@
 1. [Sum total tree numbers](/tree-sum-numbers/index.test.js)
 1. [Flatten array](/flatten-array/index.test.js)
 1. [Remove elements](/remove-elements/index.test.js)
+1. [Climbing stairs](/climbing-stairs/index.test.js)
 
 ## Setup
 ```
