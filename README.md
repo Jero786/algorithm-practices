@@ -20,6 +20,7 @@
 1. [Robot return origin](/robot-return-origin/index.test.js)
 1. [Sum total tree numbers](/tree-sum-numbers/index.test.js)
 1. [Flatten array](/flatten-array/index.test.js)
+1. [Remove elements](/remove-elements/index.test.js)
 
 ## Setup
 ```
