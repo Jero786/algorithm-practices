@@ -22,6 +22,7 @@
 1. [Flatten array](/flatten-array/index.test.js)
 1. [Remove elements](/remove-elements/index.test.js)
 1. [Climbing stairs](/climbing-stairs/index.test.js)
+1. [BST](/bst/index.test.js)
 
 ## Setup
 ```
