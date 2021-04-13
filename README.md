@@ -25,6 +25,7 @@
 1. [BST](/bst/index.test.js)
 1. [Ramsom Note](/ramsom-note/index.test.js)
 1. [Add two numbers as a linked list](/add-two-numbers-as-a-linked-list/index.test.js)
+1. [Two Sum](/two-sum/index.test.js)
 
 ## Setup
 ```
