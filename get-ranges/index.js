@@ -27,7 +27,7 @@ function binarySearch(array, target, matchCountExpected = 0, lowIndex, highIndex
   if (pivotValue === -1) {
     lowIndex = 0;
     highIndex = array.length;
-    pivotValue = array[Math.ceil(highIndex / 2)];
+    pivotValue = lowIndex + array[Math.ceil((highIndex - lowIndex) / 2)];
     return binarySearch(array, target, matchCountExpected, lowIndex, highIndex, pivotValue, targetCount);
   }
   
