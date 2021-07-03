@@ -3,7 +3,7 @@
  * @param brackets
  * @returns {string|string}
  */
-function isBalanced(brackets, index = 0, bracketStack = []) {
+function isBalancedRecursiveWay(brackets, index = 0, bracketStack = []) {
   if (index <= brackets.length) {
     const bracket = brackets[index];
     if (isBracketOpen(bracket)) {
@@ -21,6 +21,30 @@ function isBalanced(brackets, index = 0, bracketStack = []) {
   return "YES";
 }
 
+/**
+ * Validate if given brackets are properly balanced.
+ * @param brackets
+ * @returns {string|string}
+ */
+function isBalanced(brackets) {
+  let openCharacters = [];
+  
+  for (let index = 0; index < brackets.length; index++) {
+    const character = brackets[index];
+    
+    if (isBracketOpen(character)) {
+      openCharacters.unshift(character);
+    } else {
+      const lastOpenCharacter = openCharacters.shift();
+      if (!isBracketMatch(lastOpenCharacter, character)) {
+        return 'NO';
+      }
+    }
+  }
+  
+  return 'YES';
+}
+
 function isBracketOpen(bracket) {
   return !!OPEN_BRACKETS[bracket];
 }
@@ -36,5 +60,6 @@ const OPEN_BRACKETS = {
 };
 
 module.exports = {
-  isBalanced
+  isBalanced,
+  isBalancedRecursiveWay
 };
