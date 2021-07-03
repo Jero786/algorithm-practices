@@ -27,7 +27,7 @@
 1. [Add two numbers as a linked list](/add-two-numbers-as-a-linked-list/index.test.js)
 1. [Two Sum](/two-sum/index.test.js)
 1. [Get Ranges](/get-ranges/index.test.js)
-
+1. [Fibonacci](/fibonacci/index.test.js)
 
 ## Setup
 ```
