@@ -22,12 +22,17 @@
 1. [Flatten array](/flatten-array/index.test.js)
 1. [Remove elements](/remove-elements/index.test.js)
 1. [Climbing stairs](/climbing-stairs/index.test.js)
-1. [BST](/bst/index.test.js)
 1. [Ramsom Note](/ramsom-note/index.test.js)
 1. [Add two numbers as a linked list](/add-two-numbers-as-a-linked-list/index.test.js)
 1. [Two Sum](/two-sum/index.test.js)
 1. [Get Ranges](/get-ranges/index.test.js)
 1. [Fibonacci](/fibonacci/index.test.js)
+1. [Bubble Sort](/bubble-sort/index.test.js)
+1. [Selection sort](/selection-sort/index.test.js)
+1. [Insertion sort](/insertion-sort/index.test.js)
+1. [binary Search](/binary-search/index.test.js)
+1. [Binary Search Tree](/binary-search-tree/index.test.js)
+1. [Max Connected Colors](/max-connected-colors/index.test.js)
 
 ## Setup
 ```
