@@ -1,9 +1,8 @@
 /**
  *
- * Return is given Binary Search tree is valid or not, based on left value should be lower than right value.
+ * Return is given target exist in given Binary Search tree.
  *
- *  Time:  O(N) if are balanced (AVL) should be O(nlog(n))
- *  Space: O(N)
+ *  Time:  If BST are balanced (AVL) should be O(nlog(n)), otherwise could be O(n)
  *
  * @param node
  * @param target

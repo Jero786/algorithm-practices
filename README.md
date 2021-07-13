@@ -33,6 +33,7 @@
 1. [binary Search](/binary-search/index.test.js)
 1. [Binary Search Tree](/binary-search-tree/index.test.js)
 1. [Max Connected Colors](/max-connected-colors/index.test.js)
+1. [Linked List](/linked-list/index.test.js)
 
 ## Setup
 ```
