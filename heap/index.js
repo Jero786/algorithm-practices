@@ -15,7 +15,7 @@ const operationStrategy = {
 
 /**
  * Without heap data structure.
- * Time: O(N)
+ * Time: O(N2)
  * @param input
  */
 function printHeap(input) {
