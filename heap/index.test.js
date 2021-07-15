@@ -21,7 +21,7 @@ test('should console the two min values of the array with a time complexity of O
    expect(console.log.mock.calls[1][0]).toEqual("9");
 });
 
-test('should console the two min values of the array with a time complexity of O(nlog(n))', () => {
+test('should console the two min values of the array with a time complexity of O(n)', () => {
   const old = console.log;
   console.log = jest.fn();
   // Arrange
