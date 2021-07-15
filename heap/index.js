@@ -49,7 +49,7 @@ const performantOperationStrategy = {
   [DELETE_OPERATION]: (value, array) => array.remove(value),
   [PRINT_OPEARTION]: (_, array) => {
     // We need to print the min number of the current array
-    const min = array.peek(); //  O(log(n))
+    const min = array.peek(); //  O(1)
     console.log(min);
   }
 }
@@ -137,7 +137,7 @@ function MinHeap() {
      * @param item
      */
     insert: (item) => {
-      items.push(item); // add latest item at the bottom of the tree/array
+      items.push(item); // O(1) add latest item at the bottom of the tree/array
       heapifyUp(); // O(log(n))
     },
     remove: value => {
