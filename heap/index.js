@@ -2,11 +2,9 @@ const ADD_OPERATION = 1;
 const DELETE_OPERATION = 2;
 const PRINT_OPEARTION = 3;
 
-
-
 /**
  * Without heap data structure.
- * Time: O(N2)
+ * Time: O(N2) worst case
  * @param input
  */
 function printHeap(input) {
@@ -16,15 +14,13 @@ function printHeap(input) {
   
   for (let i = 1; i <= length; i++) { // O(n)
     const [operation, value] = rows[i].split(' ');
-    // make a sort for each time that need to show the min
-    // O (N * N(log(n)) == O(N2)
-    operationStrategy[operation](value, data);
+    operationStrategy[operation](value, data); // O(1) -> insert || O(n.log(n) --> peek min)
   }
 }
 
 /**
  * With heap data structure.
- * Time: O(n)
+ * Time: O(n) worst case
  * @param input
  */
 function printHeapPerformant(input) {
@@ -32,20 +28,18 @@ function printHeapPerformant(input) {
   const length = +rows[0];
   const minHeap = MinHeap();
   
-  for (let i = 1; i <= length; i++) { // O(n)
+  for (let i = 1; i <= length; i++) { // O(n) --> worst case
     const [operation, value] = rows[i].split(' ');
-    // O log(n)
-    performantOperationStrategy[operation](value, minHeap);
-  } // O log(n) + O(n) = O(n)
+    performantOperationStrategy[operation](value, minHeap); // insert --> O log(n) || peek min --> O(i)
+  }
 }
 
 const operationStrategy = {
   [ADD_OPERATION]: (value, array) => array.push(value), // O(1) because it's inserted at the end of the array.
   [DELETE_OPERATION]: (value, array) => array.splice(array.indexOf(value), 1),
   [PRINT_OPEARTION]: (_, array) => {
-    // for each value that need to print we need to sort the array
-    // and get the top O(nlog(n))
-    const min = array.sort((a, b) => a - b)[0];
+    // We need to print the min number of the current array
+    const min = array.sort((a, b) => a - b)[0]; // O(nlog(n))
     console.log(min);
   }
 }
@@ -54,9 +48,8 @@ const performantOperationStrategy = {
   [ADD_OPERATION]: (value, array) => array.insert(value), // O(log(n)) because it's inserted in the heap and then hipify
   [DELETE_OPERATION]: (value, array) => array.remove(value),
   [PRINT_OPEARTION]: (_, array) => {
-    // for each value that need to print we need to sort the array
-    // and get the top O(nlog(n))
-    const min = array.peek();
+    // We need to print the min number of the current array
+    const min = array.peek(); //  O(log(n))
     console.log(min);
   }
 }
@@ -136,7 +129,7 @@ function MinHeap() {
     poll: () => {
       const top = items.shift(); // remove top
       items[0] = items[items.length - 1]; // swap bottom item to top of the tree/array
-      heapifyDown();
+      heapifyDown(); // O(log(n))
       return top;
     },
     /**
@@ -145,7 +138,7 @@ function MinHeap() {
      */
     insert: (item) => {
       items.push(item); // add latest item at the bottom of the tree/array
-      heapifyUp();
+      heapifyUp(); // O(log(n))
     },
     remove: value => {
       items.splice(items.indexOf(value), 1);
