@@ -37,6 +37,7 @@
 1. [Heap](/heap/index.test.js)
 1. [Validate Subsequence](/subsequence/index.test.js)
 1. [Tournament Winner](/tournament-winner/index.test.js)
+1. [Non-Constructible Change](/coins-non-constructible/index.test.js)
 
 ## Setup
 ```
