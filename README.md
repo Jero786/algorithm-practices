@@ -36,6 +36,7 @@
 1. [Linked List](/linked-list/index.test.js)
 1. [Heap](/heap/index.test.js)
 1. [Validate Subsequence](/subsequence/index.test.js)
+1. [Tournament Winner](/tournament-winner/index.test.js)
 
 ## Setup
 ```
