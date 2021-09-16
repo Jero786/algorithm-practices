@@ -35,6 +35,7 @@
 1. [Max Connected Colors](/max-connected-colors/index.test.js)
 1. [Linked List](/linked-list/index.test.js)
 1. [Heap](/heap/index.test.js)
+1. [Validate Subsequence](/subsequence/index.test.js)
 
 ## Setup
 ```
