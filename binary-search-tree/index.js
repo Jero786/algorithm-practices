@@ -25,5 +25,5 @@ function existNode(
 }
 
 module.exports = {
-  isBalanced
+  existNode
 };
