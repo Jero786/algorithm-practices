@@ -39,6 +39,7 @@
 1. [Tournament Winner](/tournament-winner/index.test.js)
 1. [Non-Constructible Change](/coins-non-constructible/index.test.js)
 1. [Find Closest Value In BST](/find-closets-value-in-bst/index.test.js)
+1. [Node Depths](/node-depths/index.test.js)
 
 ## Setup
 ```
