@@ -22,7 +22,7 @@ function contains(text = '', target = '') {
       indexFound++;
       if (indexFound === target.length) break;
     } else {
-      i = i - indexFound; // if you already found character, try again where you left index.
+      i -= indexFound; // if you already found character, try again where you left index.
       indexFound = 0; // reset if I found something
     }
   }
