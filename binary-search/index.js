@@ -1,3 +1,4 @@
+
 /**
  * @param array
  * @param target
@@ -5,37 +6,34 @@
  */
 function search(
   array,
-  target
+  target,
 ) {
-  const pivot = getPivot(0, array.length);
-  return innerSearch(array, 0, array.length, target, pivot);
+  let minIndex = 0;
+  let maxIndex = array.length - 1;
+  const pivotIndex = getPivotIndex(minIndex, maxIndex);
+  return binarySearch(array, target, pivotIndex, minIndex, maxIndex);
 }
 
-function innerSearch(array, lowIndex, highIndex, target, pivot) {
-
-  const value = array[pivot];
-  
-  if (value === target)  {
+function binarySearch (array, target, pivotIndex, minIndex, maxIndex) {
+  if (target === array[pivotIndex]) {
     return true;
   }
   
-  if (lowIndex > highIndex) {
-    return false;
-  }
+  if (minIndex > maxIndex) return false;
   
-  if (target > pivot) {
-    lowIndex = pivot + 1;
+  if (array[pivotIndex] < target) {
+    minIndex = pivotIndex + 1;
   } else {
-    highIndex = pivot - 1;
+    maxIndex = pivotIndex - 1;
   }
   
-  const newPivot = getPivot(lowIndex, highIndex);
+  const newPivotIndex = getPivotIndex(minIndex, maxIndex);
   
-  return innerSearch(array, lowIndex, highIndex, target, newPivot);
+  return binarySearch(array, target, newPivotIndex, minIndex, maxIndex);
 }
 
-function getPivot(min, max) {
-  return Math.floor((min + max) / 2);
+function getPivotIndex(minIndex, maxIndex) {
+  return Math.floor((minIndex + maxIndex) / 2);
 }
 
 module.exports = {

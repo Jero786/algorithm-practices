@@ -22,39 +22,6 @@ function buildTrie(dictionary) {
   return parentNode;
 }
 
-/**
- * Given Trie, return the text matchers.
- * @param node
- * @param text
- * @param results
- * @param index
- */
-function getMatchers(node, text, results = [], index = 1) {
-  if (index >= text.length) {
-    // here we have in the position of the tree that we need to start to
-    // looking for all words stored on the tree, right below of this node.
-    const childNode = findNode(node, text);
-    return getAllChildNodes(childNode, results);
-  }
-  const matcherText = text.substring(0, index);
-  const filterNodes = node.nodes.filter(node => node.text === matcherText);
-  
-  if (filterNodes && filterNodes.length) {
-    // here we find an existing node, so we need to ask if this node `isEnd`
-    const filterLeafNode = filterNodes.filter(node => node.isEnd === true);
-    if (filterLeafNode && filterLeafNode.length > 0) {
-      const dictionary = filterNodes.map(node => node.text);
-      results = results.concat(dictionary)
-    } else {
-      index++;
-      for (const filterNode of filterNodes) {
-        getMatchers(filterNode, text, results, index);
-      }
-    }
-  }
-  return results;
-}
-
 function buildTrieNode({word, node, index = 0}) {
   if (index >= word.length) {
     return node;
@@ -91,6 +58,39 @@ function buildTrieNode({word, node, index = 0}) {
   const newChildNode = createNode({isEnd: word.length === textTarget.length, text: textTarget});
   node.nodes.push(newChildNode);
   return buildTrieNode({word, node: newChildNode, index});
+}
+
+/**
+ * Given Trie, return the text matchers.
+ * @param node
+ * @param text
+ * @param results
+ * @param index
+ */
+function getMatchers(node, text, results = [], index = 1) {
+  if (index >= text.length) {
+    // here we have in the position of the tree that we need to start to
+    // looking for all words stored on the tree, right below of this node.
+    const childNode = findNode(node, text);
+    return getAllChildNodes(childNode, results);
+  }
+  const matcherText = text.substring(0, index);
+  const filterNodes = node.nodes.filter(node => node.text === matcherText);
+  
+  if (filterNodes && filterNodes.length) {
+    // here we find an existing node, so we need to ask if this node `isEnd`
+    const filterLeafNode = filterNodes.filter(node => node.isEnd === true);
+    if (filterLeafNode && filterLeafNode.length > 0) {
+      const dictionary = filterNodes.map(node => node.text);
+      results = results.concat(dictionary)
+    } else {
+      index++;
+      for (const filterNode of filterNodes) {
+        getMatchers(filterNode, text, results, index);
+      }
+    }
+  }
+  return results;
 }
 
 function findNode(node, textTarget) {

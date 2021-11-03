@@ -22,22 +22,19 @@ class Node {
   }
   
   static reverse(head) {
-    let next;
     let prev;
+    let next;
     let current = head;
     
     while(!!current) {
-      // backup the most right pointer
       next = current.next;
-      
-      // revert the most right pointer with the more left pointer
       current.next = prev;
-      // move prev and current one step forward
       prev = current;
       current = next;
     }
     
     head = prev;
+    
     return head;
   }
   

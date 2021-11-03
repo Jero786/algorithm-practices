@@ -13,7 +13,6 @@ function multiStringSearch(bigString = '', smallStrings = []) {
 }
 
 function contains(text = '', target = '') {
-  
   if (!text || !target) return false;
   
   let indexFound = 0;

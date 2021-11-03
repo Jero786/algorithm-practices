@@ -1,9 +1,9 @@
-function findWords(boggle, dictionary) {
+function findWords(boggle, words) {
   const countRows = boggle.length;
   const countCols = boggle[0].length;
   const usedLetters = Array.from({length: countRows}, () => new Array(countCols).fill(false));
   const result = [];
-  for (const targetWord of dictionary) {
+  for (const targetWord of words) {
     for (let row = 0; row < countRows; row++) {
       for (let col = 0; col < countCols; col++) {
         if (boggle[row][col] === targetWord[0]) {

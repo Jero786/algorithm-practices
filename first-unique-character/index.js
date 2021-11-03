@@ -1,11 +1,11 @@
 /**
  * Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
- * @param word
+ * @param text
  * @returns {number}
  */
-const getFirstUniqueCharacter = (word) => {
+const getFirstUniqueCharacter = (text) => {
   
-  const mapCounter = getMapCounterWords(word);
+  const mapCounter = getMapCounterWords(text);
   
   let minIndex = Number.MAX_VALUE;
   
@@ -19,10 +19,10 @@ const getFirstUniqueCharacter = (word) => {
   return minIndex === Number.MAX_VALUE ? -1 : minIndex;
 };
 
-function getMapCounterWords(word) {
+function getMapCounterWords(text) {
   const map = {};
-  for (let letterIndex = 0; letterIndex < word.length; letterIndex++) {
-    const letter = word[letterIndex];
+  for (let letterIndex = 0; letterIndex < text.length; letterIndex++) {
+    const letter = text[letterIndex];
     if (!map[letter]) {
       map[letter] = letterIndex;
     } else {

@@ -1,11 +1,11 @@
 const {shortPrefix} = require('./index');
 
-test("short prefix", () => {
-  const dictionary = ["Carmelo", "Carrizo", "Alo", "x", "Alguna", "y"]
+test("short prefix with trie", () => {
+  const dictionary = ['jon', 'john', 'jack', 'techlead'];
   
   // Act
   const result = shortPrefix(dictionary);
   
   // Assert
-  expect(result).toEqual(["Car", "Al", "x", "y"]);
+  expect(result).toEqual(['jon', 'joh', 'ja', 't']);
 });

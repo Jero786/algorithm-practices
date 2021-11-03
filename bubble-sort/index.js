@@ -5,26 +5,19 @@
  * @returns {*[]}
  */
 function sortArray(array = []) {
-  const length = array.length;
-  let maxSteps = length - 1;
-  
-  for (let stepIndex = 0; stepIndex < maxSteps; stepIndex++) {
-    for (let walkIndex = 0; walkIndex < maxSteps; walkIndex++) {
-      if (array[walkIndex] > array[walkIndex + 1]) {
-        array = swap(array, walkIndex, walkIndex + 1);
+  let swapped;
+  do {
+    swapped = false;
+    for (let i = 0; i < array.length - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        var temp = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = temp;
+        swapped = true;
       }
     }
-    maxSteps--;
-    stepIndex = 0;
-  }
+  } while (swapped);
   
-  return array;
-}
-
-function swap(array, indexLeft, indexRight) {
-  const valueLeft = array[indexLeft];
-  array[indexLeft] = array[indexRight]
-  array[indexRight] = valueLeft;
   return array;
 }
 

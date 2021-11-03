@@ -15,9 +15,9 @@ function isPalindrome(text = '') {
  */
 function getLongestPalindrome(text = '') {
   let longestPalindrome = '';
-  for (let i = 0; i < (text.length - 1); i++) {
-    for (let j = text.length; j > i; j--) {
-      const textToValidate = text.substring(i, j);
+  for (let lowIndex = 0; lowIndex < (text.length - 1); lowIndex++) {
+    for (let maxIndex = text.length; maxIndex > lowIndex; maxIndex--) {
+      const textToValidate = text.substring(lowIndex, maxIndex);
       if (isPalindrome(textToValidate) && longestPalindrome.length < textToValidate.length) {
         longestPalindrome = textToValidate;
       }

@@ -4,92 +4,108 @@ module.exports = {
   }
 }
 
+const IDENTATION_AMOUNT = 4;
+
+// INPUTS:
+//    conversationTree | user answers
+
+// OUTPUTS:
+//    print Agent output
+//    print User answers
+//    Identantion (4 spaces for level)
+//    Output -> Identation + Answer
+//    Answer ->  Identation + Ouput | Conclusion | GOTO
+//    GOTO | Conclusion ->
+
 function conversationTree(
   node,
-  userAnswers = [],
+  userAnswer,
+  // recursion
   result = '',
+  conversationIndex = 0,
+  parentNode = null,
   identation = '',
-  answerIndex = 0,
-  parentNode
 ) {
   
-  if (!parentNode) parentNode = node;
-  
-  if (node.goto) {
-    const nextNode = searchDFSNode(parentNode, node.goto);
-    return conversationTree(
-      nextNode,
-      userAnswers,
-      result,
-      identation,
-      answerIndex,
-      parentNode
-    );
+  if (conversationIndex === 0) {
+    parentNode = node;
   }
   
-  if (answerIndex > 0) {
-    identation = incrementIdentation(identation);
-  }
+  const isConclusionNode = !node.left && !node.right;
   
-  result = addCSMessages(node, result, identation);
-  
-  if (answerIndex < userAnswers.length) {
-    const userAnswer = userAnswers[answerIndex];
-    identation = incrementIdentation(identation);
-    result = addUserMessages(result, identation, userAnswer);
-    answerIndex++
-    
-    const userSaid = !!userAnswer.match(/yes/i);
-    const nextNode = userSaid ? node.right : node.left;
-    
-    return conversationTree(
-      nextNode,
-      userAnswers,
-      result,
-      identation,
-      answerIndex,
-      parentNode
-    );
-  } else {
+  if (isConclusionNode) {
     return result;
+  } else {
+    if (hasLabelGoTo(userAnswer, conversationIndex)) {
+      const labelTarget = getLabelTo(userAnswer, conversationIndex);
+      const nextNode = searchGoToNode(labelTarget, parentNode);
+      
+      return conversationTree(nextNode, userAnswer, result, conversationIndex + 1, parentNode, identation);
+    } else {
+      result = appendAgentMessages(node, result, identation);
+      identation = incrementIdentation(identation);
+      
+      result = appendUserAnswerMessage(userAnswer, conversationIndex, result, identation);
+      identation = incrementIdentation(identation);
+      
+      const nextNode = userSaid(userAnswer, conversationIndex)
+        ? node.right
+        : node.left;
+      
+      return conversationTree(nextNode, userAnswer, result, conversationIndex + 1, parentNode, identation);
+    }
   }
+}
+
+function appendAgentMessages(node, result, identation) {
+  const isConclusion = !node.left && !node.right;
+  node.messages.forEach(message => {
+    result += `${identation}${isConclusion
+      ? '='
+      : message.label
+      ? `${message.label}:`
+      : ''}${message.text}\n`;
+  });
+  return result;
+}
+
+function appendUserAnswerMessage(userAnswers, conversationIndex, result, indentation) {
+  result += `${indentation}-${userAnswers[conversationIndex]}\n`;
+  return result;
+}
+
+function userSaid(userAnswer, conversationIndex) {
+  return userAnswer[conversationIndex].match(/yes/i);
+}
+
+function hasLabelGoTo(userAnswer, conversationIndex) {
+  return userAnswer[conversationIndex].match(/>/);
+}
+
+function getLabelTo(userAnswer, conversationIndex) {
+  const answer = userAnswer[conversationIndex];
+  return answer.substring(answer.length - 1);
+}
+
+function searchGoToNode(labelTarget, node) {
+  if (hasLabel(node)) {
+    return node;
+  }
+  
+  if (node.left) {
+    return searchGoToNode(labelTarget, node.left);
+  }
+  
+  if (node.right) {
+    return searchGoToNode(labelTarget, node.right);
+  }
+}
+
+function hasLabel(node, labelTarget) {
+  return node.messages.some(message => message.label === labelTarget);
 }
 
 function incrementIdentation(identation) {
-  identation += " ".repeat(4);
+  identation += `${' '.repeat(IDENTATION_AMOUNT)}`;
   return identation;
-}
-
-function addCSMessages(node, result, identation, answerIndex) {
-  if (node.messages && node.messages.length) {
-      node.messages.forEach(message => {
-        const isConclusion = !node.left && !node.right;
-        result += `${identation}${isConclusion ? '=' : ''}${message.text}\n`;
-      });
-  }
-  
-  return result;
-}
-
-function addUserMessages(result, identation, userAnswer) {
-  result += `${identation}-${userAnswer}\n`;
-  return result;
-}
-
-function searchDFSNode(node, targetLabel) {
-   if (hasMessages(node, targetLabel)) {
-     return node;
-   }
-   
-   if (node.left) {
-     return searchDFSNode(node.left, targetLabel);
-   }
-   
-   if (node.right) {
-     return searchDFSNode(node.right, targetLabel);
-   }
-}
-
-function hasMessages(node = {messages: []}, targetLabel) {
-  return node.messages.some(message => message.label === targetLabel);
 }
