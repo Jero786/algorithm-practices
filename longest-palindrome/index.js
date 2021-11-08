@@ -4,8 +4,14 @@
  * @returns {boolean}
  */
 function isPalindrome(text = '') {
-  const invertedText = text.split('').reverse().join('');
-  return text === invertedText;
+  let right = text.length - 1;
+  let left = 0;
+  
+  while(left < right) {
+    if (text[left] !== text[right]) return false;
+  }
+  
+  return true;
 }
 
 /**

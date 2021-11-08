@@ -1,25 +1,31 @@
-function autocomplete(words, prefix) {
+function autocomplete(words, targetText) {
   // build trie
   const trie = buildTrie(words);
   
-  // search prefix
-  return searchPrefix(trie, prefix);
+  // search text on trie
+  return getMatchersWords(trie, targetText);
 }
 
 function buildTrie(words) {
   let trie = {};
+  
   for (const word of words) {
-    trie = insertNode(trie, word);
+    trie = addWord(trie, word);
   }
+  
   return trie;
 }
 
-function insertNode(trie, word) {
+function addWord(trie, word) {
   let node = trie;
   
   for (let i = 0; i < word.length; i++) {
     const letter = word[i];
-    if (!(letter in node)) node[letter] = {};
+    
+    if (!(letter in node)) {
+      node[letter] = {};
+    }
+    
     node = node[letter];
   }
   
@@ -29,28 +35,31 @@ function insertNode(trie, word) {
   return trie;
 }
 
-function searchPrefix(trie, prefix) {
-  let node = trie; // this is the key to make it work!
+function getMatchersWords(trie, targetText) {
+  let node = trie;
   
-  // look-up into tree until find the starting prefix node.
-  for (let i = 0; i < prefix.length; i++) {
-    const letter = prefix[i];
+  for (let i = 0; i < targetText.length; i++) {
+    const letter = targetText[i];
     if (letter in node) {
-      node = node[letter];
+      node = node[letter]
     }
   }
   
-  return node ? getAllWords(node) : [];
+  return getAllChildWords(node);
 }
 
-function getAllWords(trie, result = []) {
-  if (trie.isEnd) {
-    result.push(trie.text);
-  } else {
-    for (const letter in trie) {
-       getAllWords(trie[letter], result);
+function getAllChildWords(node, result = []) {
+  if (!node) return result;
+  
+  for (const letter in node) {
+    const nextNode = node[letter];
+    if (nextNode.isEnd) {
+      result.push(nextNode.text);
+    } else {
+      getAllChildWords(nextNode, result);
     }
   }
+  
   return result;
 }
 

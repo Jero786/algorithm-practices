@@ -3,57 +3,66 @@
  * @param brackets
  * @returns {string|string}
  */
-function isBalancedRecursiveWay(brackets, index = 0, bracketStack = []) {
-  if (index <= brackets.length) {
-    const bracket = brackets[index];
-    if (isBracketOpen(bracket)) {
-      bracketStack.unshift(bracket);
+function isBalancedRecursiveWay(brackets, stack = [], index = 0) {
+    if (index === brackets.length) {
+      return "YES";
+    }
+    const currentChar = brackets[index];
+    if (isOpenCharacter(currentChar)) {
+      stack.unshift(currentChar);
+      return isBalancedRecursiveWay(brackets, stack, index + 1);
     } else {
-      const topBracket = bracketStack.shift();
-      if (!isBracketMatch(topBracket, bracket)) {
-        return "NO";
+      const prevChar = stack.shift();
+      if (isMatchingCharacter(prevChar, currentChar)) {
+        return isBalancedRecursiveWay(brackets, stack, index + 1);
+      } else {
+        return 'NO';
       }
     }
-    index++;
-    return isBalanced(brackets, index, bracketStack)
-  }
-  
-  return "YES";
+}
+
+const CHARACTER = {
+  '{':'}',
+  '[':']',
+  '(':')',
+}
+
+function isMatchingCharacter(char, compare) {
+  return CHARACTER[char] === compare;
 }
 
 /**
  * Validate if given brackets are properly balanced.
- * @param brackets
+ * @param string
  * @returns {string|string}
  */
-function isBalanced(brackets) {
-  let openCharacters = [];
+function isBalanced(string) {
+  if (!string) return false;
   
-  for (let index = 0; index < brackets.length; index++) {
-    const character = brackets[index];
-    
-    if (isBracketOpen(character)) {
-      openCharacters.unshift(character);
+  const stack = [];
+  const characters = string.split('');
+  
+  for (let i = 0; i < characters.length; i++) {
+    const char = characters[i];
+    if (isOpenCharacter(char)) {
+      stack.unshift(char);
     } else {
-      const lastOpenCharacter = openCharacters.shift();
-      if (!isBracketMatch(lastOpenCharacter, character)) {
-        return 'NO';
+      const lastOpenCharacter = stack.shift();
+      if (CHARACTERS_MAP[lastOpenCharacter] !== char) {
+        return "NO";
       }
     }
   }
   
-  return 'YES';
+  return isOpenCharacter(string.slice(-1)) === false ?  "YES" : "NO"
 }
 
-function isBracketOpen(bracket) {
-  return !!OPEN_BRACKETS[bracket];
+function isOpenCharacter(char) {
+  return char in CHARACTERS_MAP;
 }
 
-function isBracketMatch(bracketOpen, bracketClose) {
-  return OPEN_BRACKETS[bracketOpen] === bracketClose;
-}
 
-const OPEN_BRACKETS = {
+const CHARACTERS_MAP = {
   "[":"]",
   "(":")",
   "{":"}",

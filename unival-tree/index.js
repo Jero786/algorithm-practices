@@ -18,16 +18,12 @@ const createUnivalNode = ({value, nodes = []}) => ({
  * @returns {boolean}
  */
 function isUnivalTree(node, univalValue, resultNodes = []) {
+  const isUnival = node.value === univalValue;
   
-  if (node.hasChildren()) {
-    for (const nodeChild of node.nodes) {
-      return isUnivalTree(nodeChild, univalValue, resultNodes);
-    }
-  } else {
-    resultNodes.push(node.value === univalValue);
-  }
-  
-  return resultNodes.every(value => value);
+  return isUnival && (node.hasChildren()
+      ? node.nodes.every(child => isUnivalTree(child, univalValue))
+      : true
+  )
 }
 
 module.exports = {

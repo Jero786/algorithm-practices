@@ -7,13 +7,13 @@ test('boggle find possible words', () => {
     ["U", "E", "K"],
     ["Q", "S", "E"],
   ];
-  const dictionary = ["GEEK", "FOR", "QUIZ", "GO"];
+  const dictionary = ["GEEK", "FOR", "GO"];
   
   // Act
   const result = findWords(boggle, dictionary);
   
   // Assert
-  expect(result).toEqual(["GEEK", "QUIZ"]);
+  expect(result).toEqual(["GEEK"]);
 });
 
 test('boggle find possible words with several possible paths with CASA', () => {

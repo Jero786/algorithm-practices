@@ -5,7 +5,6 @@ const {generateParentheses} = require('.');
  * Input: n = 3
  * Output: ["((()))","(()())","(())()","()(())","()()()"]
  */
-
 test("generate parentheses, should be one", () => {
   // Arrange
   const n = 1;
@@ -16,7 +15,6 @@ test("generate parentheses, should be one", () => {
   expect(result).toEqual(["()"]);
 });
 
-// WIP...
 test("generate parentheses, should be one", () => {
   // Arrange
   const n = 3;
@@ -24,5 +22,11 @@ test("generate parentheses, should be one", () => {
   const result = generateParentheses(n);
   
   // Assert
-  expect(result).toEqual(["((()))","(()())","(())()","()(())","()()()"]);
+  expect(result).toEqual([
+    "((()))",
+    "(()())",
+    "(())()",
+    "()(())",
+    "()()()",
+  ]);
 });

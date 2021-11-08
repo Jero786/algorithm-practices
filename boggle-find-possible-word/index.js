@@ -1,64 +1,67 @@
-function findWords(boggle, words) {
-  const countRows = boggle.length;
-  const countCols = boggle[0].length;
-  const usedLetters = Array.from({length: countRows}, () => new Array(countCols).fill(false));
-  const result = [];
-  for (const targetWord of words) {
-    for (let row = 0; row < countRows; row++) {
-      for (let col = 0; col < countCols; col++) {
-        if (boggle[row][col] === targetWord[0]) {
-          usedLetters[row][col] = true;
-          if (findWord(boggle, row, col, targetWord, usedLetters)) {
-            result.push(targetWord);
+function findWords(matrix, words) {
+  if (!words || words.length === 0 || !matrix || matrix.length === 0) return [];
+  
+  const usedCells = Array.from({length: matrix.length}, () => new Array(matrix[0].length).fill(false));
+  let result = [];
+  for (const word of words) {
+    for (let row = 0; row < matrix.length; row++) {
+      for (let col = 0; col < matrix[row].length; col++) {
+        const firstLetterTarget = word[0];
+        if (matrix[row][col] === firstLetterTarget && !usedCells[row][col]) {
+          if (existWord(matrix, word, usedCells)) {
+            result.push(word);
           }
         }
       }
     }
   }
-  
   return result;
 }
 
-function findWord(
-  boggle,
-  row,
-  col,
-  targetWord,
-  usedLetters,
-  letterFoundIndex = 0,
-  stepsCount = 0
+function existWord(
+  matrix,
+  word,
+  usedCells,
+  // recursive params.
+  indexLetterFound = 0,
+  row = 0,
+  col = 0,
+  steps = 0,
+  textFound = ''
 ) {
-  // Goal
-  if (letterFoundIndex === targetWord.length - 1) return true;
   
-  const isInRange = row >= 0 && row < boggle.length && col >= 0 && col < boggle[row].length;
-  if (!isInRange) return false;
+  // exist/goal
+  if (indexLetterFound === word.length) return true;
   
-  const targetNextLetter = targetWord[letterFoundIndex + 1];
-  const currentWord = boggle[row][col];
-  let found = false;
+  const isInRange = row < matrix.length &&
+    row >= 0 &&
+    col < matrix[row].length &&
+    col >= 0;
   
-  if (targetNextLetter === currentWord && !usedLetters[row][col]) {
-    letterFoundIndex++;
-    usedLetters[row][col] = true;
-    stepsCount = 0;
-    found = findWord(boggle, row, col, targetWord, usedLetters, letterFoundIndex, stepsCount);
-  } else {
-    if (stepsCount < 1)  {
-      stepsCount++;
-      // Horizontal & Vertical check
-      found = findWord(boggle, row + 1, col, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        findWord(boggle, row - 1, col, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        findWord(boggle, row, col + 1, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        findWord(boggle, row, col - 1, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        // Diagonals check
-        findWord(boggle, row - 1, col - 1, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        findWord(boggle, row - 1, col + 1, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        findWord(boggle, row + 1, col + 1, targetWord, usedLetters, letterFoundIndex, stepsCount) ||
-        findWord(boggle, row + 1, col - 1, targetWord, usedLetters, letterFoundIndex, stepsCount);
+  let isFound = false;
+  
+  if (isInRange) {
+    const targetLetter = word[indexLetterFound];
+    if (matrix[row][col] === targetLetter && !usedCells[row][col]) {
+      steps = 0;
+      usedCells[row][col] = true;
+      isFound = existWord(matrix, word, usedCells, indexLetterFound + 1, row, col, steps, textFound)
+    } else {
+      if (steps === 0) { // only search for adjacent cells
+        steps++;
+       isFound = existWord(matrix, word, usedCells, indexLetterFound, row - 1, col, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row - 1, col - 1, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row, col - 1, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row + 1, col - 1, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row + 1, col, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row + 1, col + 1, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row, col + 1, steps) ||
+        existWord(matrix, word, usedCells, indexLetterFound, row - 1, col + 1, steps);
+      }
     }
   }
-  return found;
+  
+  return isFound;
 }
 
 module.exports = {

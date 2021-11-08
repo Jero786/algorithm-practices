@@ -31,8 +31,7 @@ function getBusMusic(tracks, durationByMin) {
   // Memory space: O(1)
   while(lowIndex < highIndex) {
     
-    const sumTracksByMin = (sortedTracks[lowIndex] + sortedTracks[highIndex]);
-    const totalTargetByMin = sumTracksByMin + extraTimeByMin;
+    const totalTargetByMin = (sortedTracks[lowIndex] + sortedTracks[highIndex]) + extraTimeByMin;
     const currentDiff = durationByMin - totalTargetByMin;
     
     if (currentDiff > 0 && currentDiff < lastDiff) {

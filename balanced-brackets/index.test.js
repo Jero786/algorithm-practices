@@ -5,7 +5,7 @@ test('The balanced brackets should be false', () => {
   const expectedTrue = "NO";
   
   // Act
-  const actualValue = isBalanced("{]");
+  const actualValue = isBalanced("()[]{}{");
   
   // Assert
   expect(actualValue).toEqual(expectedTrue);

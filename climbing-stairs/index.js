@@ -9,6 +9,7 @@ const getAmountsWaysToClimbStairs = (amountSteps) => {
   for (; i <= amountSteps; i++) {
     waysClimbUp[i] = waysClimbUp[i - 1] + waysClimbUp[i - 2];
   }
+
   return waysClimbUp.pop();
 }
 

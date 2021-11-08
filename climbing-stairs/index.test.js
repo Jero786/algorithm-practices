@@ -46,11 +46,11 @@ test('climbing-stairs with non stairs steps', () => {
 
 test('climbing-stairs with 5 steps', () => {
   // Arrange
-  const amountSteps = 5;
+  const amountSteps = 6;
   
   // Act
   const result = getAmountsWaysToClimbStairs(amountSteps);
   
   // Assert
-  expect(result).toEqual(8);
+  expect(result).toEqual(13);
 });

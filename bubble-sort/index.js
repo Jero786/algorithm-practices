@@ -5,19 +5,23 @@
  * @returns {*[]}
  */
 function sortArray(array = []) {
-  let swapped;
+  let swapper = false;
   do {
-    swapped = false;
+    swapper = false;
     for (let i = 0; i < array.length - 1; i++) {
       if (array[i] > array[i + 1]) {
-        var temp = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = temp;
-        swapped = true;
+        swapper = true;
+        array = swap(array, i, i + 1);
       }
     }
-  } while (swapped);
-  
+  } while (swapper)
+  return array;
+}
+
+function swap(array, originIndex, newIndex) {
+  const temp = array[originIndex];
+  array[originIndex] = array[newIndex];
+  array[newIndex] = temp;
   return array;
 }
 
