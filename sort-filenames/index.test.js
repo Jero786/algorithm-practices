@@ -4,11 +4,11 @@ test('should sort the filenames', () => {
   // Arrange
   const filenames = [
     'zebra.gif',
+    'file2something.gif',
     'apply.gif',
     'file.gif',
     'file1.gif',
     'file10.gif',
-    'file2something.gif',
     'file2zebra.gif',
   ]
   // Act
@@ -19,10 +19,11 @@ test('should sort the filenames', () => {
       "apply.gif",
       "file.gif",
       "file1.gif",
-      "file10.gif",
       "file2something.gif",
       "file2zebra.gif",
-      "zebra.gif"
-    ]);
+      "file10.gif",
+      "zebra.gif",
+    ]
+  );
   
 });
