@@ -95,6 +95,7 @@
 1. [Union Sorted Array](/union-sorted-arrays/index.test.js)
 1. [Validate Binary Tree](/validate-binary-tree/index.test.js)
 1. [Word Search](/word-search/index.test.js)
+1. [Product Array Except Self](/product-array-except-self/index.test.js)
 
 ## Setup
 ```
