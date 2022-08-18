@@ -1,4 +1,4 @@
-const {maximumSubarray} = require('.');
+const { maximumSubarray } = require('.');
 
 test('maximum subarray with result of positive numbers', () => {
   // Arrange
@@ -8,7 +8,6 @@ test('maximum subarray with result of positive numbers', () => {
   // Assert
   expect(result).toEqual(6); // [4,-1,2,1] has the largest sum = 6.
 });
-
 
 test('maximum subarray with result of positive numbers', () => {
   // Arrange
