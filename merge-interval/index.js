@@ -5,38 +5,31 @@
  * @returns {number[][]}
  */
 function getIntervals(intervals) {
-  
-  if (intervals.length === 1) {
-    return intervals
-  }
-  // clone to don't change given interval
-  let newInterval = [...intervals];
-  
-  // sort intervals by first value of each interval
-  newInterval.sort(([a, _], [b, __]) =>
-    (a === b)
-      ? 0
-      : a < b
-      ? -1
-      : 1
+  if (!intervals || intervals.length < 2) return intervals;
+
+  const clonedIntervals = [...intervals].sort(([a, _], [b, __]) =>
+    a === b ? 0 : a < b ? -1 : 1
   );
-  
+
   let index = 0;
-  while (index < newInterval.length - 1) {
-    const [minOne, maxOne] = newInterval[index];
-    const [minTwo, maxTwo] = newInterval[index + 1];
-    if (minTwo >= minOne && minTwo <= maxOne) {
-      newInterval.splice(index, 2, [Math.min(minOne, minTwo), Math.max(maxOne, maxTwo)]);
+  while (index < clonedIntervals.length - 1) {
+    const [minOne, maxOne] = clonedIntervals[index];
+    const [minTwo, maxTwo] = clonedIntervals[index + 1];
+
+    if (minTwo <= maxOne) {
+      clonedIntervals.splice(index, 2, [
+        Math.min(minOne, minTwo),
+        Math.max(maxOne, maxTwo)
+      ]);
       index = 0;
     } else {
       index++;
     }
   }
-  
-  return newInterval;
-}
 
+  return clonedIntervals;
+}
 
 module.exports = {
   getIntervals
-}
+};
