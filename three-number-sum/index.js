@@ -12,26 +12,25 @@ function getAllTriplets(nums, target) {
   let low = 1;
   let high = nums.length - 1;
   let result = {};
-  
-  nums.sort((a, b) => a - b) // O(nLog(n)) /-> Quick Sort/Mega Sort
-  
+
+  nums.sort((a, b) => a - b); // O(nLog(n)) /-> Quick Sort/Mega Sort
+
   if (!nums || nums.length < 2) return [];
-  
-  while (current < (nums.length - 2)) {
-    
+
+  while (current < nums.length - 2) {
     if (low >= high) {
       current++;
       low = current + 1;
       high = nums.length - 1;
     }
-    
+
     let possibleTarget = nums[current] + nums[low] + nums[high];
     if (possibleTarget === target) {
       result[`${nums[current]}-${nums[low]}-${nums[high]}`] = [
         nums[current],
         nums[low],
-        nums[high],
-      ]
+        nums[high]
+      ];
       low++;
       high--;
     } else if (possibleTarget > target) {
@@ -40,7 +39,7 @@ function getAllTriplets(nums, target) {
       low++;
     }
   }
-  
+
   return Object.values(result);
 }
 
@@ -55,17 +54,51 @@ function getAllTripletsBruteForce(nums, target) {
           result[`${nums[i]}-${nums[j]}-${nums[k]}`] = [
             nums[i],
             nums[j],
-            nums[k],
-          ]
+            nums[k]
+          ];
         }
       }
     }
   }
-  
+
   return Object.values(result);
 }
+
+/**
+ *
+ * TC: O(n2)
+ * EC: O(n)
+ * @returns
+ */
+const getAllTripletsWhileFor = (nums, target) => {
+  const sortedNums = nums.sort((a, b) => a - b); // n(log n)  quicksort, heapsort, meagasort.
+  let result = [];
+
+  for (let i = 0; i < sortedNums.length; i++) {
+    if (sortedNums[i] >= target) continue; // it's higher than needed.
+
+    let left = i + 1;
+    let right = sortedNums.length - 1;
+
+    while (left < right) {
+      const possibleSum = sortedNums[i] + sortedNums[left] + sortedNums[right];
+      if (possibleSum === target) {
+        result.push([sortedNums[i], sortedNums[left], sortedNums[right]]);
+        left++;
+        right--;
+      } else if (possibleSum > target) {
+        right--;
+      } else {
+        left++;
+      }
+    }
+  }
+
+  return result;
+};
 
 module.exports = {
   getAllTriplets,
   getAllTripletsBruteForce,
-}
+  getAllTripletsWhileFor
+};
