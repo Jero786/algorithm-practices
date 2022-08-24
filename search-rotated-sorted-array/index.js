@@ -1,45 +1,49 @@
-function searchInRotatedSortedArray(numbers, target) {
-  
-  // find start of shifting
+function searchInRotatedSortedArray(nums, target) {
+  if (!nums || nums.length === 0) return -1;
+
   let left = 0;
-  let right = numbers.length - 1;
-  
-  while(left < right) {
-    const pivotIndex = Math.floor(left + (right - left) / 2);
-    if (numbers[pivotIndex] > numbers[right]) {
-      left = pivotIndex + 1;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const pivot = Math.floor((left + right) / 2);
+
+    if (nums[pivot] === target) return pivot;
+
+    // se search the original start index of the rotated array.
+    if (nums[pivot] > nums[right]) {
+      left = pivot + 1;
     } else {
-      right = pivotIndex - 1;
+      break;
     }
   }
-  
-  let shiftIndex = left;
+
+  let start = left;
   left = 0;
-  right = numbers.length - 1;
-  
-  if (numbers[shiftIndex] >= target
-    && target <= numbers[right]) {
-    left = shiftIndex;
+  right = nums.length - 1;
+
+  // we should decide in which side our target are (left or right)
+  if (target >= nums[start]) {
+    left = start;
   } else {
-    right = shiftIndex;
+    right = start;
   }
-  
-  let targetIndex;
-  while(left <= right) {
-    targetIndex = Math.floor(left + (right - left) / 2);
-    
-    if (numbers[targetIndex] === target) return targetIndex;
-    
-    if (numbers[targetIndex] < target) {
-       left = targetIndex + 1;
+
+  // Do a regular binary search
+  while (left <= right) {
+    const pivot = Math.floor((left + right) / 2);
+
+    if (nums[pivot] === target) {
+      return pivot;
+    } else if (nums[pivot] < target) {
+      left = pivot + 1;
     } else {
-       right = targetIndex - 1
+      right = pivot - 1;
     }
   }
-  
-  return targetIndex;
+
+  return -1;
 }
 
 module.exports = {
   searchInRotatedSortedArray
-}
+};

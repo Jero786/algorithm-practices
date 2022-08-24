@@ -7,17 +7,32 @@
  * @returns {number}
  */
 function maximumSubarray(numbers) {
-  if (numbers.length === 1 && numbers[0] < 0) return 0;
-  let prevNumber = 1;
-  let maxSum = Number.MIN_VALUE;
-  for (let i = 0; i < numbers.length; i++) {
-   const currentNumber = numbers[i];
-   prevNumber = Math.max(currentNumber, prevNumber * currentNumber);
-   maxSum = Math.max(prevNumber, maxSum);
+  if (numbers.length === 1) return numbers[0];
+
+  let minProducts = [numbers[0]];
+  let maxProducts = [numbers[0]];
+  let maxProduct = numbers[0];
+
+  for (let i = 1; i < numbers.length; i++) {
+    const num = numbers[i];
+    maxProducts[i] = Math.max(
+      num,
+      num * minProducts[i - 1],
+      num * maxProducts[i - 1]
+    );
+
+    minProducts[i] = Math.min(
+      num,
+      num * minProducts[i - 1],
+      num * maxProducts[i - 1]
+    );
+
+    maxProduct = Math.max(maxProduct, maxProducts[i]);
   }
-  return maxSum;
+
+  return maxProduct;
 }
 
 module.exports = {
   maximumSubarray
-}
+};

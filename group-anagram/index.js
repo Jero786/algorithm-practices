@@ -1,23 +1,21 @@
 function groupAnagrams(anagrams) {
-  const dictionary = buildDictionary(anagrams)
-  
-  return Object.values(dictionary);
-}
+  if (!anagrams || anagrams.length === 0) return [];
 
-
-function buildDictionary(anagrams) {
   const dictionary = {};
+
   for (const word of anagrams) {
+    // abc <-- bac
     const sortedWord = word.split('').sort().join('');
     if (sortedWord in dictionary) {
       dictionary[sortedWord].push(word);
     } else {
-      dictionary[sortedWord] = [word]
+      dictionary[sortedWord] = [word];
     }
   }
-  return dictionary;
+
+  return Object.values(dictionary);
 }
 
 module.exports = {
   groupAnagrams
-}
+};
