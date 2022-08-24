@@ -6,22 +6,21 @@ class Node {
 }
 
 function hasCycle(head) {
- 
-  let slow = head;
-  let fast = head.next;
-  
-  while(slow !== fast) {
-  
-    if (fast === undefined || fast.next === undefined) return false;
-  
-    fast = fast.next.next;
-    slow = slow.next;
+  let node = head;
+
+  while (node) {
+    if (node.seen) {
+      return node;
+    } else {
+      node.seen = true;
+    }
+    node = node.next;
   }
-  
-  return true;
+
+  return false;
 }
 
 module.exports = {
   Node,
   hasCycle
-}
+};

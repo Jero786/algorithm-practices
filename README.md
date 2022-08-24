@@ -24,6 +24,7 @@
 1. [Climbing stairs](/climbing-stairs/index.test.js)
 1. [Ramsom Note](/ramsom-note/index.test.js)
 1. [Add two numbers as a Linked List](/add-two-numbers-as-a-linked-list/index.test.js)
+1. [Reverse Linked List](/reverse-linked-list/index.test.js)
 1. [Two Sum](/two-sum/index.test.js)
 1. [Get Ranges](/get-ranges/index.test.js)
 1. [Fibonacci](/fibonacci/index.test.js)
@@ -98,11 +99,13 @@
 1. [Product Array Except Self](/product-array-except-self/index.test.js)
 
 ## Setup
+
 ```
 yarn
 ```
 
 ## Run test
+
 ```
 jest
 ```
