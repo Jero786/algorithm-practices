@@ -86,6 +86,7 @@
 1. [Search Rotated Sorted Array](/search-rotated-sorted-array/index.test.js)
 1. [Selection Sort](/selection-sort/index.test.js)
 1. [Serialize/Deserialize BST](/serialize-deserialize-binary-search-tree/index.test.js)
+1. [Same Tree](/same-tree/index.test.js)
 1. [Short Prefix](/short-prefix/index.test.js)
 1. [Short Prefix Tries](/short-prefix-tries/index.test.js)
 1. [Smallest Differences](/smallest-difference/index.test.js)
