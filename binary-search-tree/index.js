@@ -8,15 +8,11 @@
  * @param target
  * @returns {boolean}
  */
-function existNode(
-  node,
-  target
-) {
-  if (!node) return;
-  
-  if (node.value === target) {
-    return true;
-  }
+function existNode(node, target) {
+  if (!node) return false;
+
+  if (node.value === target) return true;
+
   if (target > node.value) {
     return existNode(node.right, target);
   } else {

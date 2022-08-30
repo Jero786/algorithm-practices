@@ -1,7 +1,6 @@
 const {hasCycle, Node} = require('.');
 
 
-
 test('has linked list cycle', () => {
   // Arrange
   const nodeFour = new Node(-4);

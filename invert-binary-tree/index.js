@@ -7,22 +7,22 @@ class Node {
 }
 
 function invertBinaryTree(node) {
-  if (node === null || node.length === 0) return node;
-  
-  node = swapChilds(node);
-  
+  if (!node) return node;
+
+  node = swipNode(node);
+
   if (node.left) {
     invertBinaryTree(node.left);
   }
-  
+
   if (node.right) {
     invertBinaryTree(node.right);
   }
-  
+
   return node;
 }
 
-function swapChilds(node) {
+function swipNode(node) {
   if (node && node.left && node.right) {
     const temp = node.left;
     node.left = node.right;
@@ -34,4 +34,4 @@ function swapChilds(node) {
 module.exports = {
   invertBinaryTree,
   Node
-}
+};

@@ -7,14 +7,15 @@ class Node {
 
 function hasCycle(head) {
   let node = head;
+  let visitedNodes = new Set();
 
   while (node) {
-    if (node.seen) {
-      return node;
+    if (visitedNodes.has(node)) {
+      return true;
     } else {
-      node.seen = true;
+      visitedNodes.add(node);
+      node = node.next;
     }
-    node = node.next;
   }
 
   return false;
