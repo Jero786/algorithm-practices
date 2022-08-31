@@ -99,6 +99,7 @@
 1. [Validate Binary Tree](/validate-binary-tree/index.test.js)
 1. [Word Search](/word-search/index.test.js)
 1. [Product Array Except Self](/product-array-except-self/index.test.js)
+1. [Best time to Buy and Sell](/best-time-to-buy-and-sell/index.test.js)
 
 ## Setup
 
