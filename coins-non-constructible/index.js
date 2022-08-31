@@ -12,20 +12,21 @@
  * @returns {number}
  */
 function nonConstructibleChange(coins) {
-  let sum = 0;
-  coins.sort((a, b) => a - b); // O(nLog(n))
-  
-  for (let i = 0; i < coins.length; i++) {
-    const coin = coins[i];
-    
-    if (coin > sum + 1) {
-      return sum + 1;
+  let sumTotal = 0;
+
+  coins.sort((a, b) => a - b);
+
+  for (const coin of coins) {
+    if (coin > sumTotal + 1) {
+      break;
+    } else {
+      sumTotal += coin;
     }
-    sum += coin
   }
-  return sum + 1;
+
+  return sumTotal + 1;
 }
 
 module.exports = {
   nonConstructibleChange
-}
+};
