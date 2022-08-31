@@ -87,6 +87,7 @@
 1. [Selection Sort](/selection-sort/index.test.js)
 1. [Serialize/Deserialize BST](/serialize-deserialize-binary-search-tree/index.test.js)
 1. [Same Tree](/same-tree/index.test.js)
+1. [Contains Duplicate](/contains-duplicate/index.test.js)
 1. [Short Prefix](/short-prefix/index.test.js)
 1. [Short Prefix Tries](/short-prefix-tries/index.test.js)
 1. [Smallest Differences](/smallest-difference/index.test.js)
