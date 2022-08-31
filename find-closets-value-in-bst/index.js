@@ -10,13 +10,18 @@ function findClosestValueInBst(root, target) {
 }
 
 function transverseNode(node, target, closest) {
-  if (node === null) return closest;
-  
-  if (Math.abs(target - closest) > Math.abs(target - node.value)) {
+  if (!node) return closest;
+
+  const prevDistance = Math.abs(target - closest);
+  const currentDistance = Math.abs(target - node.value);
+
+  if (prevDistance > currentDistance) {
+    // means the current node is closer than previouse
     closest = node.value;
   }
-  
-  if (node.value === target) return node.value;
+
+  if (node.value === target) node.value;
+
   if (target > node.value) {
     return transverseNode(node.right, target, closest);
   } else {
@@ -27,4 +32,4 @@ function transverseNode(node, target, closest) {
 module.exports = {
   BST,
   findClosestValueInBst
-}
+};
