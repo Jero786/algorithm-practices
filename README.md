@@ -67,6 +67,7 @@
 1. [Maximum Product Subarray](/maximum-product-subarray/index.test.js)
 1. [Maximum Subarray](/maximum-subarray/index.test.js)
 1. [Minimum Waiting Time](/minimun-waiting-time/index.test.js)
+1. [Class Photos](/class-photos/index.test.js)
 1. [Minimum Window Substring](/minimun-window-substring/index.test.js)
 1. [Merge Interval](/merge-interval/index.test.js)
 1. [Multi String](/multi-string/index.test.js)
