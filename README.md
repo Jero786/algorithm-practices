@@ -49,6 +49,7 @@
 1. [Balanced brackets](/balanced-brackets/index.test.js)
 1. [Boggle Find Possible Word](/boggle-find-possible-word/index.test.js)
 1. [Breadth First](/breadth-first/index.test.js)
+1. [Transverse BFS](/transverse-breadth-first-search/index.test.js)
 1. [Concatenation](/concatenation/index.test.js)
 1. [Container With Most Water](/container-with-most-water/index.test.js)
 1. [Fibonacci](/fibonacci/index.test.js)
