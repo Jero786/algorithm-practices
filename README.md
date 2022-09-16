@@ -104,6 +104,7 @@
 1. [Product Array Except Self](/product-array-except-self/index.test.js)
 1. [Best time to Buy and Sell](/best-time-to-buy-and-sell/index.test.js)
 1. [Tandem Bicycle](/tandem-bicycle/index.test.js)
+1. [Nth Fibonacci](/nth-fibonacci/index.test.js)
 
 ## Setup
 
