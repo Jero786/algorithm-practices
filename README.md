@@ -105,6 +105,7 @@
 1. [Best time to Buy and Sell](/best-time-to-buy-and-sell/index.test.js)
 1. [Tandem Bicycle](/tandem-bicycle/index.test.js)
 1. [Nth Fibonacci](/nth-fibonacci/index.test.js)
+1. [Palindrome Permutation](/palindrome-permutation/index.test.js)
 
 ## Setup
 
